@@ -6,12 +6,9 @@
       </ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button class="notification">
-        <ion-icon name="notifications-outline" color="dark"></ion-icon>
-        <span>&nbsp;</span>
-      </ion-button>
-      <ion-button class="filter">
-        <ion-icon name="funnel-outline" color="dark"></ion-icon>
+      <ion-button routerLink="/my-cart" routerDirection="forward">
+        <ion-icon name="cart" color="dark" size="large"></ion-icon>
+        <ion-badge color="primary" class="cart-badge">{{cart.getNumberOfItems()}}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -26,22 +23,6 @@
   </div>
 
   <div class="title ion-padding">
-    <h2>Categories</h2>
-    <p>See all</p>
-  </div>
-
-  <div class="category-slider ion-padding-start">
-    <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
-      <ion-slide *ngFor="let category of categories">
-        <ion-col>
-          <h4>{{ category.name }}</h4>
-          <img src="{{ category.image }}" />
-        </ion-col>
-      </ion-slide>
-    </ion-slides>
-  </div>
-
-  <div class="title ion-padding">
     <h2 class="font-bold">Featured</h2>
     <p>See all</p>
   </div>
@@ -49,10 +30,11 @@
   <div class="product-slider ion-padding-start">
     <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
       <ion-slide *ngFor="let product of featuredProducts">
-        <ion-col class="ion-text-left" routerLink="/item-details" routerDirection="forward">
+        <ion-col class="ion-text-left">
           <img src="{{ product.image }}" />
           <p>${{ product.price }}</p>
           <h6>{{ product.name }}</h6>
+          <ion-button expand="full" (click)="addToCart(product)">Add to Cart</ion-button>
         </ion-col>
       </ion-slide>
     </ion-slides>
@@ -66,10 +48,11 @@
   <div class="product-slider ion-padding-start">
     <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
       <ion-slide *ngFor="let product of bestSellProducts">
-        <ion-col class="ion-text-left" routerLink="/item-details" routerDirection="forward">
+        <ion-col class="ion-text-left">
           <img src="{{ product.image }}" />
           <p>${{ product.price }}</p>
           <h6>{{ product.name }}</h6>
+          <ion-button expand="full" (click)="addToCart(product)">Add to Cart</ion-button>
         </ion-col>
       </ion-slide>
     </ion-slides>

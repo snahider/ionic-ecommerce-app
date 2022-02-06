@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { CartService } from '../services/cart.service';
+import { IProduct,DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private data: DataService,
+    private cart: CartService,
   ) { }
 
   ngOnInit() {
@@ -20,5 +22,9 @@ export class HomePage implements OnInit {
     this.featuredProducts = this.data.getFeaturedProducts();
     this.bestSellProducts = this.data.getBestSellProducts();
   }
+
+  addToCart(product: IProduct) {
+		this.cart.addProduct(product);
+	}
 
 }

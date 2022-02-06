@@ -118,3 +118,12 @@ ion-slide:focus {
 ion-col:focus {
     outline: none !important;
 }
+
+.cart-badge {
+  position: absolute;
+  top: 0px;
+  right: -5px;
+  font-size: 0.8em;
+  --padding-start: 5px;
+  --padding-end: 5px;
+}
